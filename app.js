@@ -8,6 +8,7 @@ const app = express();
 
 const userRoutes = require("./routes/user");
 const addressRoutes = require("./routes/address");
+const authenticationRoutes = require("./routes/authentication");
 
 app.get("/", ( req, res )=>{
     res.send("Welcome to Street-Shopping...");
@@ -20,6 +21,7 @@ app.use( cookieParser() );
 
 app.use("/api", userRoutes );
 app.use("/api", addressRoutes );
+app.use("/api", authenticationRoutes );
 
 app.listen( 3000, ()=>{
     console.log("App is running on 3000.....");

@@ -26,7 +26,6 @@ User.init({
     },
     userRole: {
         type: Sequelize.INTEGER(11),
-        allowNull: false,
     },
     profileImage: {
         type: Sequelize.STRING(50)
