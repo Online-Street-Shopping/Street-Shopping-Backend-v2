@@ -105,17 +105,23 @@ exports.updateAddress = async( req, res )=>{
 exports.deleteAddress = async( req, res )=>{
     const addressId = req.params.addressId;
 
-    Address.destroy({
-        where: { addressId }
-    })
-    .then(( response )=>{
-        if( response ){
-            return res.status(200).json({
-                success: "Address deleted succesfuly !!"
-            });
-        }
-    })
-    .catch(( error )=>{
-        return res.status(402).json(error);
-    });
+    if( addressId ){
+        Address.destroy({
+            where: { addressId }
+        })
+        .then(( response )=>{
+            if( response ){
+                return res.status(200).json({
+                    success: "Address deleted succesfuly !!"
+                });
+            }
+        })
+        .catch(( error )=>{
+            return res.status(402).json(error);
+        });
+    } else{
+        return res.status(402).json({
+            error: "Address-id not found !!!"
+        });
+    }
 };
