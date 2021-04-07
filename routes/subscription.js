@@ -1,6 +1,6 @@
 const express = require("express");
 const { check } = require("express-validator");
-const { getAllSubscription, getAllSubscriptionWithBuySubscription, getSubscriptionWithBuySubscriptionBySubscriptionId, addSubscription, updateSubscription, deleteSubscription } = require("../controller/subscription");
+const { getAllSubscription, getAllSubscriptionWithBuySubscription, getSubscriptionWithBuySubscriptionBySubscriptionId, addSubscription, updateSubscription, deleteSubscription, getBuySubscriptionByBuySubscriptionId, getAllBuySubscriptionWithShop } = require("../controller/subscription");
 const routes = express.Router();
 
 //get all subscription
@@ -15,10 +15,22 @@ routes.get(
     getAllSubscriptionWithBuySubscription
 );
 
+//get all buySubscription with shop details
+routes.get(
+    "/buySubscriptions/shop",
+    getAllBuySubscriptionWithShop
+);
+
 //get all subscription along with buy subscription by id
 routes.get(
     "/subscription/:subscriptionId",
     getSubscriptionWithBuySubscriptionBySubscriptionId
+);
+
+//get buySubscription with shop details by buySubscriptionId
+routes.get(
+    "/buySubscription/:buySubscriptionId",
+    getBuySubscriptionByBuySubscriptionId
 );
 
 //add subscription

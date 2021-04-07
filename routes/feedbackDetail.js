@@ -1,6 +1,5 @@
 const express = require("express");
 const { check } = require("express-validator");
-const {  } = require("../controller/feedbackDetail");
 const { addFeedbackDetail, updateFeedbackDetail, deleteFeedbackDetail } = require("../controller/feedbackDetail");
 const routes = express.Router();
 
