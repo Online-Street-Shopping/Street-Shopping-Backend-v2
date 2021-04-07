@@ -24,6 +24,8 @@ const cardRoutes = require("./routes/card");
 const categoryRoutes = require("./routes/category");
 const subCategoryRoutes = require("./routes/subCategory")
 const subscriptionRoutes = require("./routes/subscription");
+const buySubscriptionRoutes = require("./routes/buySubscription");
+const deliveryRoutes = require("./routes/delivery")
 
 app.get("/", ( req, res )=>{
     res.send("Welcome to Street-Shopping...");
@@ -52,6 +54,8 @@ app.use("/api", cardRoutes );
 app.use("/api", categoryRoutes );
 app.use("/api", subCategoryRoutes );
 app.use("/api", subscriptionRoutes );
+app.use("/api", buySubscriptionRoutes );
+app.use("/api", deliveryRoutes );
 
 app.listen( 3000, ()=>{
     console.log("App is running on 3000.....");

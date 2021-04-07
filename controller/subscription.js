@@ -3,9 +3,14 @@ const { validationResult } = require("express-validator");
 
 const BuySubscription = require("../model/BuySubscription");
 const Subscription = require("../model/Subscription");
+const Shop = require("../model/Shop");
 
 Subscription.hasMany( BuySubscription, { as: "BuySubscription", foreignKey: "subscriptionId" });
 BuySubscription.belongsTo( Subscription, { as: "Subscription", foreignKey: "subscriptionId" });
+
+Shop.hasOne(BuySubscription, {as: "BuySubscription", foreignKey: "shopId"});
+BuySubscription.belongsTo( Shop, { as: "Shop", foreignKey: "shopId" });
+
 
 exports.getAllSubscription = async( req, res )=>{
     Subscription.findAll()
@@ -20,11 +25,29 @@ exports.getAllSubscription = async( req, res )=>{
 exports.getAllSubscriptionWithBuySubscription = async( req, res )=>{
     Subscription.findAll({
         include: [{
-            model: BuySubscription, as: "BuySubscription"
+            model: BuySubscription, as: "BuySubscription",
+            include: [{
+                model: Shop, as: "Shop"
+            }]
         }]
     })
     .then(( subscription )=>{
         return res.status(200).json( subscription );
+    })
+    .catch(( error )=>{
+        return res.status(402).json(error);
+    })
+};
+
+//get all buySubscription with shop details
+exports.getAllBuySubscriptionWithShop = async( req, res )=>{
+    BuySubscription.findAll({
+        include: [{
+            model: Shop, as: "Shop",
+        }]
+    })
+    .then(( buySubscription )=>{
+        return res.status(200).json( buySubscription );
     })
     .catch(( error )=>{
         return res.status(402).json(error);
@@ -41,11 +64,35 @@ exports.getSubscriptionWithBuySubscriptionBySubscriptionId = async( req, res )=>
         include: [
             {
                 model: BuySubscription, as: "BuySubscription",
+                include: [{
+                    model: Shop, as: "Shop"
+                }]
             }
         ]
     })
     .then(( subscription )=>{
         return res.status(200).json( subscription );
+    })
+    .catch(( error )=>{
+        return res.status(402).json(error);
+    })
+
+};
+
+//get by buySubscriptionId
+exports.getBuySubscriptionByBuySubscriptionId = async( req, res )=>{
+    const buySubscriptionId = req.params.buySubscriptionId;
+    
+    BuySubscription.findOne({
+        where: { buySubscriptionId },
+        include: [
+            {
+                model: Shop, as: "Shop",
+            }
+        ]
+    })
+    .then(( buySubscription )=>{
+        return res.status(200).json( buySubscription );
     })
     .catch(( error )=>{
         return res.status(402).json(error);

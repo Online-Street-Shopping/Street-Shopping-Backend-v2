@@ -13,7 +13,7 @@ BuySubscription.init({
         allowNull: false,
     },
     shopId: {
-        type: Sequelize.INTEGER(16),
+        type: Sequelize.INTEGER(20),
         allowNull: false,
     },
     subscriptionEndsAt: Sequelize.DATE,
