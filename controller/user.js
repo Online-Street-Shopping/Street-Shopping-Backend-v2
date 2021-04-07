@@ -40,8 +40,7 @@ exports.getUserDetailsById = async( req, res )=>{
     })
     .catch(( error )=>{
         return res.status( 402 ).json( error );
-    })
-    ;
+    });
 };
 
 // Updating user info like firstName, lastName, contactNo
@@ -298,6 +297,31 @@ exports.getAllAdmins = async( req, res )=>{
     .catch(( error )=>{
         return res.status( 402 ).json( error );
     });
+};
+
+const getUserByAddress = ( addressId )=>{
+    if( addressId ){
+        User.findOne({
+            where: { addressId },
+            include: [
+                {
+                    model: Address, as: "Address",
+                },
+                {
+                    model: Card, as: "Card"
+                }
+            ]
+        })
+        .then(( userDetails )=>{
+            return userDetails;
+        })
+        .catch(( error )=>{
+            return error;
+        })
+        ;
+    } else{
+        return null;
+    }
 };
 
 /*
