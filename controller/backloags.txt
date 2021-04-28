@@ -1,0 +1,23 @@
+market by city, pincode, 
+
+products by market, shops : sort by price, 
+
+shops by market, : sort by location
+
+Order by ShopId : sort by month
+
+generate delivery requests by Vendor
+
+add feedback by vendor for delivery boy
+
+vecdor will confirm the order on the base of payment
+
+get all vendor whos subscription will get expired -- basically sort by date
+
+delivery : sort/get  by city
+
+choose delivery from open requests
+
+
+
+

@@ -43,6 +43,21 @@ exports.getUserDetailsById = async( req, res )=>{
     });
 };
 
+// Get user by Email-Id
+exports.getUserByEmailId = async( req, res )=>{
+    const emailId = req.params.emailId;
+
+    User.findOne({
+        where: { emailId }
+    })
+    .then(( userDetails )=>{
+        return res.status( 200 ).json( userDetails );
+    })
+    .catch(( error )=>{
+        return res.status( 402 ).json( error );
+    });
+};
+
 // Updating user info like firstName, lastName, contactNo
 exports.updateUser = async( req, res )=>{
     const validationErrors = validationResult( req );

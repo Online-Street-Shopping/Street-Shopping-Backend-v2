@@ -5,8 +5,11 @@ const Delivery = require("../model/Delivery");
 const Order = require("../model/Order");
 const User = require("../model/User");
 
-Delivery.hasMany( Order, { as: "Order", foreignKey: "orderId" });
-Order.belongsTo( Delivery, { as: "Delivery", foreignKey: "orderId" });
+// Delivery.hasMany( Order, { as: "Order", foreignKey: "orderId" });
+// Order.belongsTo( Delivery, { as: "Delivery", foreignKey: "orderId" });
+
+Order.hasOne( Delivery, { as: "Delivery", foreignKey: "orderId" });
+Delivery.belongsTo( Order, { as: "Order", foreignKey: "orderId" });
 
 User.hasMany( Delivery, { as: "Delivery", foreignKey: "userId" });
 Delivery.belongsTo( User, { as: "User", foreignKey: "userId" });
@@ -69,7 +72,7 @@ exports.getDeliveryByDeliveryId = async( req, res )=>{
 
 //get delivery by delivery boy(userId)
 exports.getDeliveryByDeliveryBoy = async( req, res )=>{
-    const deliveryId = req.params.deliveryId;
+    const userId = req.params.userId;
     
     Delivery.findOne({
         where: { userId },

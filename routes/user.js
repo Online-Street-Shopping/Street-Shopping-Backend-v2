@@ -18,6 +18,12 @@ routes.get(
     getUserDetailsById
 );
 
+// Get-users by email-id
+routes.get(
+    "/user/details/:emailID",
+    getUserDetailsByEmail
+);
+
 // get-All-Users
 routes.get(
     "/user/users/",
