@@ -23,7 +23,7 @@ routes.get(
 
 //get delivery by delivery boy(userId)
 routes.get(
-    "/delivery/:userId",
+    "/delivery/user/:userId",
     getDeliveryByDeliveryBoy
 );
 

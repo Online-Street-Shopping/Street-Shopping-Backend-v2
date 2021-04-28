@@ -2,12 +2,46 @@ const generateUniqueId = require("generate-unique-id");
 
 const Shop = require("../model/Shop");
 const Product = require("../model/Product");
+const User = require("../model/User");
+const Market = require("../model/Market");
+const Address = require("../model/Address");
+const SubCategory = require("../model/SubCategory");
 
 Shop.hasMany( Product, { as: "Product", foreignKey: "shopId" });
 Product.belongsTo( Shop, { as: "Shop", foreignKey: "shopId" });
 
+User.hasOne( Shop, { as: "Shop", foreignKey: "userId" });
+Shop.belongsTo( User, { as: "User", foreignKey: "userId" });
+
+Market.hasMany( Shop, { as: "Shop", foreignKey: "marketId" });
+Shop.belongsTo( Market, { as: "Market", foreignKey: "marketId" });
+
+Address.hasOne( Shop, { as: "Shop", foreignKey: "addressId" });
+Shop.belongsTo( Address, { as: "Address", foreignKey: "addressId" });
+
+SubCategory.hasMany( Shop, { as: "Shop", foreignKey: "subCategoryId" });
+Shop.belongsTo( SubCategory, { as: "SubCategory", foreignKey: "subCategoryId" });
+
 exports.getShops = async( req, res )=>{
-    Shop.findAll()
+    Shop.findAll({
+        include: [
+            {
+                model: Product, as: "Product"
+            },
+            {
+                model: User, as: "User"
+            },
+            {
+                model: Market, as: "Market"
+            },
+            {
+                model: Address, as: "Address"
+            },
+            {
+                model: SubCategory, as: "SubCategory"
+            }
+        ]
+    })
     .then(( shops )=>{
         res.status(200).json( shops );
     })
