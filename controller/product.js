@@ -1,6 +1,10 @@
 const Product = require("../model/Product");
 const generateUniqueId = require("generate-unique-id");
 const { validationResult } = require("express-validator");
+const Media = require("../model/Media");
+
+Product.hasMany( Media, { as: "Media", foreignKey: "productId" });
+Media.belongsTo( Product, { as: "Product", foreignKey: "productId" });
 
 // get allproducts...
 exports.getProducts = async( req, res )=>{
