@@ -13,6 +13,7 @@ const marketRoutes = require("./routes/market");
 const productRoutes = require("./routes/product");
 const shopRoutes = require("./routes/shop");
 const orderRoutes = require("./routes/order");
+const mediaRoutes = require("./routes/media");
 
 const feedbackRoutes = require("./routes/feedback");
 const feedbackDetailRoutes = require("./routes/feedbackDetail");
@@ -43,6 +44,7 @@ app.use("/api", marketRoutes );
 app.use("/api", productRoutes );
 app.use("/api", shopRoutes );
 app.use("/api", orderRoutes );
+app.use("/api", mediaRoutes );
 
 app.use("/api", feedbackRoutes);
 app.use("/api", feedbackDetailRoutes);

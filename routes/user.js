@@ -9,7 +9,8 @@ const {
     getAllUsers, 
     getAllAdmins, 
     getAllVendors, 
-    getAllDeliveryBoys
+    getAllDeliveryBoys,
+    getUserByEmailId
 } = require("../controller/user");
 const routes = express.Router();
 
@@ -21,7 +22,7 @@ routes.get(
 // Get-users by email-id
 routes.get(
     "/user/details/:emailID",
-    getUserDetailsByEmail
+    getUserByEmailId
 );
 
 // get-All-Users
