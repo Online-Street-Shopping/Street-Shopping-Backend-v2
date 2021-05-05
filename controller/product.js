@@ -2,13 +2,40 @@ const Product = require("../model/Product");
 const generateUniqueId = require("generate-unique-id");
 const { validationResult } = require("express-validator");
 const Media = require("../model/Media");
+const SubCategory = require("../model/SubCategory");
+const Shop = require("../model/Shop");
 
 Product.hasMany( Media, { as: "Media", foreignKey: "productId" });
 Media.belongsTo( Product, { as: "Product", foreignKey: "productId" });
 
+SubCategory.hasMany( Product, { as: "Product", foreignKey: "subCategoryId"});
+Product.belongsTo( SubCategory, { as: "SubCategory", foreignKey: "subCategoryId"});
+
 // get allproducts...
 exports.getProducts = async( req, res )=>{
     Product.findAll()
+    .then(( products )=>{
+        res.status( 200 ).json( products );
+    })
+    .catch(( error )=>{
+        res.status( 402 ).json( error );
+    });
+};
+
+exports.getProductWithShopsSubCategory = async( req, res )=>{
+    Product.findAll({
+        include: [
+            {
+                model: Shop, as: "Shop",
+            },
+            {
+                model: Media, as: "Media"
+            },
+            {
+                model: SubCategory, as: "SubCategory"
+            }
+        ]
+    })
     .then(( products )=>{
         res.status( 200 ).json( products );
     })

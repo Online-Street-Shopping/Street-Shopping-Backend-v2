@@ -8,13 +8,20 @@ const {
     getProductByCategory, 
     addProduct, 
     updateProduct, 
-    deleteProduct 
+    deleteProduct, 
+    getProductWithShopsSubCategory
 } = require("../controller/product");
 
 // get-all-products
 routes.get(
     "/products",
     getProducts
+);
+
+// get-all-products with shops
+routes.get(
+    "/products/shops",
+    getProductWithShopsSubCategory
 );
 
 // get product by id
