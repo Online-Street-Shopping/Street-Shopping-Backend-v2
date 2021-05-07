@@ -35,3 +35,5 @@ const sequelize = new Sequelize("street_shopping", "admin", "rootroot", {
 
 module.exports = sequelize;
 global.sequelize = sequelize;
+
+// https://street-shopping-2.herokuapp.com/ | https://git.heroku.com/street-shopping-2.git

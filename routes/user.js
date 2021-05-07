@@ -21,7 +21,7 @@ routes.get(
 
 // Get-users by email-id
 routes.get(
-    "/user/details/:emailID",
+    "/user/details/email/:emailID",
     getUserByEmailId
 );
 
