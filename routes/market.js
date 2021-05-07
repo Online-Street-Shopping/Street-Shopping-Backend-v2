@@ -27,8 +27,8 @@ routes.put(
         check("addressId").isLength({ min: 20, max: 20 }).withMessage("addressId length must be equal to 20 !!"),
         check("marketName").isLength({ min: 1, max: 50 }).withMessage("market-name can't be empty !!"),
         check("rating").isLength({ min: 1, max: 1 }).withMessage("rating can't be empty !!"),
-        check("marketImage").isLength({ min: 1, max: 50 }).withMessage("market-image can't be empty !!"),
-        check("marketVideo").isLength({ min: 1, max: 50 }).withMessage("market-video can't be empty !!"),
+        check("marketImage").isLength({ min: 1, max: 1000 }).withMessage("market-image can't be empty !!"),
+        check("marketVideo").isLength({ min: 1, max: 1000 }).withMessage("market-video can't be empty !!"),
     ],
     updateMarket
 );
