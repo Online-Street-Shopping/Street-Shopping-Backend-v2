@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
 require('dotenv').config();
+const cors = require("cors");
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: false }));
 app.use( fileUpload() );
 app.use( cookieParser() );
+app.use( cors() );
 
 app.use("/api", userRoutes );
 app.use("/api", addressRoutes );
