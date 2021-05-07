@@ -115,7 +115,7 @@ exports.getShopWithProduct = async( req, res )=>{
                             model: Category, as: "Category"
                         }],
                     },{
-                        model: Media, as: Media
+                        model: Media, as: "Media"
                     }]
                 },
                 {
