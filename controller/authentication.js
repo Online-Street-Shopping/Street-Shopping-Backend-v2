@@ -36,8 +36,7 @@ exports.signIn = async( req, res )=>{
                         res.cookie( "user", response, { expire: new Date() + 5 });
                         
                         res.status(200).json({
-                            token: token,
-                            message: "Sign-in succesfuly !!"
+                           response
                         });
                     } else{
                         res.status(422).json({
