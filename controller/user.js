@@ -45,7 +45,7 @@ exports.getUserDetailsById = async( req, res )=>{
 
 // Get user by Email-Id
 exports.getUserByEmailId = async( req, res )=>{
-    const emailId = req.params.emailId;
+    const emailId = req.params.emailID;
 
     User.findOne({
         where: { emailId }
