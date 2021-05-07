@@ -6,12 +6,13 @@ const User = require("../model/User");
 const Market = require("../model/Market");
 const Address = require("../model/Address");
 const SubCategory = require("../model/SubCategory");
+const Category = require("../model/Category");
 
 Shop.hasMany( Product, { as: "Product", foreignKey: "shopId" });
 Product.belongsTo( Shop, { as: "Shop", foreignKey: "shopId" });
 
 User.hasOne( Shop, { as: "Shop", foreignKey: "userId" });
-Shop.belongsTo( User, { as: "User", foreignKey: "userId" });
+Shop.belongsTo( User, { as: "Vendor", foreignKey: "userId" });
 
 Market.hasMany( Shop, { as: "Shop", foreignKey: "marketId" });
 Shop.belongsTo( Market, { as: "Market", foreignKey: "marketId" });
@@ -29,7 +30,7 @@ exports.getShops = async( req, res )=>{
                 model: Product, as: "Product"
             },
             {
-                model: User, as: "User"
+                model: User, as: "Vendor"
             },
             {
                 model: Market, as: "Market"
@@ -104,9 +105,29 @@ exports.getShopWithProduct = async( req, res )=>{
     if( shopId ){
         Shop.findAll({
             where: { shopId },
-            include: [{
-                model: Product, as: "Product"
-            }]
+            include: [
+                {
+                    model: Product, as: "Product",
+                    include:[{
+                        model: SubCategory, as: "SubCategory",
+                        include: [{
+                            model: Category, as: "Category"
+                        }]
+                    }]
+                },
+                {
+                    model: Address, as: "Address"
+                },
+                {
+                    model: User, as: "Vendor"
+                },
+                {
+                    model: SubCategory, as: "SubCategory"
+                },
+                {
+                    model: Market, as: "Market"
+                }
+            ]
         })
         .then(( shops )=>{
             res.status(200).json( shops );
