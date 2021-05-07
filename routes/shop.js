@@ -8,7 +8,8 @@ const {
     getShopWithProduct,
     addShop,
     updateShop,
-    deleteShop
+    deleteShop,
+    getShopsFromMarketId
 } = require("../controller/shop");
 const routes = express.Router();
 
@@ -20,6 +21,12 @@ routes.get(
 routes.get(
     "/shop/:shopId",
     getShop
+);
+
+// get shops from market Id
+routes.get( 
+    "/shop/market/:marketId",
+    getShopsFromMarketId
 );
 
 routes.get(

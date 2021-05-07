@@ -64,6 +64,20 @@ exports.getShopsWithProducts = async( req, res )=>{
     });
 };
 
+exports.getShopsFromMarketId = async( req, res )=>{
+    const marketId = req.params.marketId;
+
+    if( marketId ){
+        Shop.findAll({ where: { marketId } })
+        .then(( response )=>{
+            return res.status( 200 ).json( response );
+        })
+        .catch(( error )=>{
+            return res.status( 422 ).json( error );
+        });
+    }
+};
+
 exports.getShop = async( req, res )=>{
     const shopId = req.params.shopId;
 
