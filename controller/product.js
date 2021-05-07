@@ -75,7 +75,18 @@ exports.getProductByShop = async( req, res )=>{
         Product.findAll({
             where: {
                 shopId
-            }
+            },
+            include: [
+                {
+                    model: Shop, as: "Shop",
+                },
+                {
+                    model: Media, as: "Media"
+                },
+                {
+                    model: SubCategory, as: "SubCategory"
+                }
+            ]
         })
         .then(( products )=>{
             res.status( 200 ).json( products );
