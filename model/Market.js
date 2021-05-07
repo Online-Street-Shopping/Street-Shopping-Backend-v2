@@ -22,11 +22,11 @@ Market.init({
         allowNull: false
     },
     marketImage: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(500),
         allowNull: false
     },
     marketVideo: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(500),
         allowNull: false
     },
     createdAt: Sequelize.DATE,
