@@ -7,6 +7,7 @@ const Market = require("../model/Market");
 const Address = require("../model/Address");
 const SubCategory = require("../model/SubCategory");
 const Category = require("../model/Category");
+const Media = require("../model/Media");
 
 Shop.hasMany( Product, { as: "Product", foreignKey: "shopId" });
 Product.belongsTo( Shop, { as: "Shop", foreignKey: "shopId" });
@@ -112,7 +113,9 @@ exports.getShopWithProduct = async( req, res )=>{
                         model: SubCategory, as: "SubCategory",
                         include: [{
                             model: Category, as: "Category"
-                        }]
+                        }],
+                    },{
+                        model: Media, as: Media
                     }]
                 },
                 {
