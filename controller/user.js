@@ -44,6 +44,9 @@ exports.getUserDetailsById = async( req, res )=>{
 };
 
 // Get user by Email-Id
+// SALT_ROUNDS=9
+// JWT_SECRET=AAKASH_IS_BEST
+
 exports.getUserByEmailId = async( req, res )=>{
     const emailId = req.params.emailID;
 
