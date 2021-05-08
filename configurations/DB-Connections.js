@@ -16,10 +16,6 @@ const Client = require("ssh2").Client;
 //   dialect: "mysql",
 // });
 
-const sequelize = new Sequelize("street_shopping", "admin", "rootroot", {
-    host: "street-shopping1.c0ndxw1eox5h.us-east-2.rds.amazonaws.com",
-    dialect: "mysql",
-});
 
 // const sequelize = new Sequelize("street-shopping", "root", "", {
 //     host: "localhost",
